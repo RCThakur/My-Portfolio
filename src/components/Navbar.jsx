@@ -2,6 +2,7 @@ import { cn } from "../lib/utils";
 import { useEffect, useState } from "react";
 import { X, Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import logo from "../assets/R_logo.svg";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -39,7 +40,7 @@ export const Navbar = () => {
           href="#hero"
           className="text-xl font-bold text-foreground flex items-center gap-2 scroll-mt-16"
         >
-          <img src="src/assets/R_logo.svg" alt="logo" className="w-6 h-6" />
+          <img src={logo} alt="logo" className="w-6 h-6" />
           <span className="text-glow text-foreground">
             RCThakur{" "}
             <span className="text-foreground/80 font-normal">Portfolio</span>

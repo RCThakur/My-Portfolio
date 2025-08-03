@@ -3,6 +3,7 @@ import { projects } from "../lib/projectData";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 
+
 export const Projects = () => {
   return (
     <section

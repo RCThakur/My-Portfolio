@@ -1,6 +1,7 @@
 import React from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { FaFacebook, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import BannerPhoto from "../assets/images/BannerPhoto.png";
 
 export const HeroSection = () => {
   const [text] = useTypewriter({
@@ -89,7 +90,7 @@ export const HeroSection = () => {
 
   {/* Image */}
   <img
-    src="src/assets/images/myImage/BannerPhoto.png"
+    src={BannerPhoto}
     alt="Rinkesh Thakur"
     className="w-60 h-60 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover object-top rounded-full border-4 border-primary shadow-xl transition-transform duration-300 group-hover:scale-110"
   />

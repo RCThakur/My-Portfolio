@@ -1,4 +1,8 @@
 // data/projectData.js
+import edugame from "../assets/images/edugamify.png";
+import finance from "../assets/images/personalFinance.png";
+import smart from "../assets/images/SmartInventory.png";
+
 export const projects = [
   {
     title: "SmartInventory",
@@ -7,7 +11,7 @@ export const projects = [
     tech: ["React", "Firebase", "Tailwind CSS"],
     github: "https://github.com/RCThakur/smart-inventory",
     live: "https://smartinventory-app.netlify.app/",
-    image: "src/assets/images/projectImg/smartInventory.png",
+    image: smart,
   },
   {
     title: "EduGamify – Learning Through Play",
@@ -16,7 +20,7 @@ export const projects = [
     tech: ["React", "Firebase", "Tailwind CSS"],
     github: "https://github.com/RCThakur/edtech-payout-system",
     live: "https://edugamify.netlify.app/home.html",
-    image: "src/assets/images/projectImg/edugamify.png",
+    image: edugame,
   },
   {
     title: "Personal Finance Tracker",
@@ -25,6 +29,6 @@ export const projects = [
     tech: ["React", "Firebase", "Chart.js"],
     github: "https://github.com/RCThakur/personal-finance-tracker",
     live: "https://personal-finance-trackes.netlify.app/",
-    image: "/src/assets/images/projectImg/personalFinance.png",
+    image: finance,
   },
 ];
