@@ -17,6 +17,7 @@ export const HeroSection = () => {
       id="hero"
       className="w-full px-6 sm:px-10 md:px-16 lg:px-24 pt-32 pb-20 flex flex-col lg:flex-row items-center gap-10 border-b font-bold"
     >
+      {/* Left Column */}
       <div className="w-full lg:w-1/2 flex flex-col gap-10">
         {/* Intro Text */}
         <div className="flex flex-col gap-3 text-center lg:text-left">
@@ -43,58 +44,70 @@ export const HeroSection = () => {
             Find me on
           </h2>
           <div className="flex justify-center lg:justify-start gap-4 text-xl">
-            <span className="bannerIcon">
+            {[
+              {
+                icon: <FaFacebook />,
+                link: "https://www.facebook.com/rinkesh.thakur.98/",
+              },
+              {
+                icon: <FaLinkedin />,
+                link: "https://www.linkedin.com/in/rinkesh-thakur-3b985a160/",
+              },
+              { icon: <FaGithub />, link: "https://github.com/RCThakur" },
+              {
+                icon: <FaInstagram />,
+                link: "https://www.instagram.com/r_c_thakur/",
+              },
+            ].map((item, idx) => (
               <a
-                href="https://www.facebook.com/rinkesh.thakur.98/"
+                key={idx}
+                href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white
+                  transition-all duration-300 ease-out
+                  animate-float
+                  hover:scale-125 hover:rotate-12 hover:shadow-lg hover:shadow-primary/50"
               >
-                <FaFacebook />
+                {item.icon}
               </a>
-            </span>
-            <span className="bannerIcon">
-              <a
-                href="https://www.linkedin.com/in/rinkesh-thakur-3b985a160/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin />
-              </a>
-            </span>
-            <span className="bannerIcon">
-              <a
-                href="https://github.com/RCThakur"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub />
-              </a>
-            </span>
-            <span className="bannerIcon">
-              <a
-                href="https://www.instagram.com/r_c_thakur/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaInstagram />
-              </a>
-            </span>
+            ))}
           </div>
+        </div>
+
+        {/* Resume Button */}
+        <div className="flex justify-center lg:justify-start">
+          <a
+            href="https://drive.google.com/file/d/1IEeufiCcr4C4gm64K2ijbI2_vgUjZ1V4/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-2 rounded-full font-semibold text-sm shadow-lg
+              bg-gradient-to-r from-primary to-pink-500 text-white
+              hover:scale-105 hover:shadow-pink-500/50
+              transition-all duration-300 ease-out"
+          >
+            Download Resume
+          </a>
         </div>
       </div>
 
-    {/* Right Column (Image) */}
- <div className="w-full flex justify-center lg:justify-end relative pt-10 lg:pt-0 group">
-  {/* Glowing background that intensifies on hover */}
-  <div className="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 lg:translate-x-0 lg:right-0 -z-10 w-80 h-80 md:w-96 md:h-96 rounded-full bg-primary/20 blur-3xl transition-all duration-500 group-hover:blur-[100px] group-hover:bg-primary/40" />
-
-  {/* Image */}
-  <img
-    src={BannerPhoto}
-    alt="Rinkesh Thakur"
-    className="w-60 h-60 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover object-top rounded-full border-4 border-primary shadow-xl transition-transform duration-300 group-hover:scale-110"
-  />
-</div>
+      {/* Right Column */}
+      <div className="w-full flex justify-center lg:justify-end relative pt-10 lg:pt-0 group">
+        {/* Animated Glow */}
+        <div
+          className="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 lg:translate-x-0 lg:right-0 -z-10
+          w-80 h-80 md:w-96 md:h-96 rounded-full bg-primary/20 blur-3xl 
+          animate-pulse group-hover:blur-[100px] group-hover:bg-primary/40 transition-all duration-500"
+        />
+        {/* Image */}
+        <img
+          src={BannerPhoto}
+          alt="Rinkesh Thakur"
+          className="w-60 h-60 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover object-top 
+            rounded-full border-4 border-primary shadow-xl 
+            transition-transform duration-300 group-hover:scale-110"
+        />
+      </div>
     </section>
   );
 };
