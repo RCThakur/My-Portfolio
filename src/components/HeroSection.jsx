@@ -78,7 +78,7 @@ export const HeroSection = () => {
         {/* Resume Button */}
         <div className="flex justify-center lg:justify-start">
           <a
-            href="https://drive.google.com/file/d/1IEeufiCcr4C4gm64K2ijbI2_vgUjZ1V4/view?usp=sharing"
+            href="https://drive.google.com/file/d/10s99uxXCNJFRRCUNx10fYIqH0mPelB4I/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-2 rounded-full font-semibold text-sm shadow-lg

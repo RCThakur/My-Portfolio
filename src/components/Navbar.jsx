@@ -74,7 +74,7 @@ export const Navbar = () => {
 
           {/* Resume Button */}
           <a
-            href="https://drive.google.com/file/d/1IEeufiCcr4C4gm64K2ijbI2_vgUjZ1V4/view?usp=sharing"
+            href="https://drive.google.com/file/d/10s99uxXCNJFRRCUNx10fYIqH0mPelB4I/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 rounded-md text-sm font-semibold transition-all duration-300
@@ -136,7 +136,7 @@ export const Navbar = () => {
 
             {/* Mobile Resume Button */}
             <a
-              href="https://drive.google.com/file/d/1IEeufiCcr4C4gm64K2ijbI2_vgUjZ1V4/view?usp=sharing"
+              href="https://drive.google.com/file/d/10s99uxXCNJFRRCUNx10fYIqH0mPelB4I/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
