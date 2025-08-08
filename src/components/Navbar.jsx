@@ -16,29 +16,41 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Detect scroll for style change
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Smooth scroll without URL change + navbar offset
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const section = document.querySelector(href);
+    if (section) {
+      const navHeight = document.querySelector("nav").offsetHeight;
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: sectionTop, behavior: "smooth" });
+    }
+  };
 
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300 scroll-mt-16",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-sm" : "py-5"
+        "fixed w-full h-18 z-50 transition-all duration-300 bg-gradient-to-r from-primary/70 to-foreground/20 shadow-md backdrop-blur-sm",
+        isScrolled
+          ? "py-3 bg-gradient-to-r from-primary/70 to-foreground/20 shadow-md backdrop-blur-sm"
+          : "py-5"
       )}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container px-4 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#hero"
-          className="text-xl font-bold text-foreground flex items-center gap-2 scroll-mt-16"
+          onClick={(e) => handleNavClick(e, "#hero")}
+          className="text-xl font-bold text-foreground flex items-center gap-2 cursor-pointer"
         >
           <img src={logo} alt="logo" className="w-6 h-6" />
           <span className="text-glow text-foreground">
@@ -48,16 +60,30 @@ export const Navbar = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex gap-x-10 items-center">
+        <div className="hidden md:flex gap-x-8 items-center">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="transition-colors duration-300 hover:text-primary text-foreground/80"
+              onClick={(e) => handleNavClick(e, item.href)}
+              className="transition-colors duration-300 hover:text-primary text-foreground/80 cursor-pointer"
             >
               {item.name}
             </a>
           ))}
+
+          {/* Resume Button */}
+          <a
+            href="https://drive.google.com/file/d/1IEeufiCcr4C4gm64K2ijbI2_vgUjZ1V4/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 rounded-md text-sm font-semibold transition-all duration-300
+              border border-gray-800 bg-gray-800 text-white hover:bg-white hover:text-gray-900 hover:border-white
+              dark:border-primary dark:bg-primary dark:text-black dark:hover:bg-white dark:hover:text-primary dark:hover:border-white"
+          >
+            Resume
+          </a>
+
           <ThemeToggle />
         </div>
 
@@ -76,21 +102,50 @@ export const Navbar = () => {
         {/* Mobile Overlay Nav */}
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md flex flex-col items-center justify-center md:hidden z-40 transition-all duration-300",
-            isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            "fixed top-0 left-0 w-full h-screen bg-background/95 dark:bg-primary/95 backdrop-blur-md",
+            "flex flex-col items-center justify-center md:hidden transition-all duration-300 z-[60]",
+            isOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="flex flex-col gap-y-6 text-xl">
+          {/* Close Button */}
+          <button
+            onClick={() => setIsOpen(false)}
+            aria-label="Close Menu"
+            className="absolute top-5 right-5 p-2 text-foreground bg-white/10 rounded-full backdrop-blur hover:bg-white/20 transition"
+          >
+            <X size={24} />
+          </button>
+
+          {/* Mobile Links */}
+          <div className="flex flex-col items-center gap-y-6 text-lg font-medium">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="transition-colors duration-300 hover:text-primary text-foreground/80"
+                onClick={(e) => {
+                  handleNavClick(e, item.href);
+                  setIsOpen(false);
+                }}
+                className="transition-colors duration-300 hover:text-primary text-foreground/80 cursor-pointer"
               >
                 {item.name}
               </a>
             ))}
+
+            {/* Mobile Resume Button */}
+            <a
+              href="https://drive.google.com/file/d/1IEeufiCcr4C4gm64K2ijbI2_vgUjZ1V4/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-2 rounded-md text-sm font-semibold transition-all duration-300
+                border border-gray-800 bg-gray-800 text-white hover:bg-white hover:text-gray-900 hover:border-white
+                dark:border-primary dark:bg-primary dark:text-black dark:hover:bg-white dark:hover:text-primary dark:hover:border-white"
+            >
+              Resume
+            </a>
           </div>
         </div>
       </div>
