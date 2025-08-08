@@ -1,6 +1,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -29,21 +30,39 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <button
+    <motion.button
       onClick={toggleTheme}
+      whileTap={{ scale: 0.85 }}
       className={cn(
-        "fixed top-5 right-5 z-50 p-3 rounded-full shadow-lg transition duration-300",
+        "p-2 rounded-full shadow-md transition duration-300",
         "bg-white/20 dark:bg-[#0f172a]/70 backdrop-blur-md",
         "hover:ring-2 hover:ring-offset-2 hover:ring-white/40 hover:dark:ring-cyan-400/40",
-        "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400",
-        "glow-effect" 
+        "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400"
       )}
     >
-      {isDarkMode ? (
-        <Sun className="w-6 h-6 text-yellow-300 drop-shadow-md" />
-      ) : (
-        <Moon className="w-6 h-6 text-blue-900 drop-shadow-sm" />
-      )}
-    </button>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={isDarkMode ? "sun" : "moon"}
+          initial={{ rotate: -180, scale: 0.5, opacity: 0 }}
+          animate={{
+            rotate: 0,
+            scale: [1, 1.3, 1], // Bounce effect
+            opacity: 1,
+          }}
+          exit={{ rotate: 180, scale: 0.5, opacity: 0 }}
+          transition={{
+            duration: 0.4,
+            ease: "easeInOut",
+            scale: { duration: 0.3, ease: "easeOut" },
+          }}
+        >
+          {isDarkMode ? (
+            <Sun className="w-5 h-5 text-yellow-300 drop-shadow-md" />
+          ) : (
+            <Moon className="w-5 h-5 text-blue-900 drop-shadow-sm" />
+          )}
+        </motion.span>
+      </AnimatePresence>
+    </motion.button>
   );
 };
