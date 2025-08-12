@@ -36,6 +36,26 @@ export const Navbar = () => {
     }
   };
 
+  // Resume handler: open in new tab + download
+  const handleResumeClick = (e) => {
+    e.preventDefault();
+
+    // Open the Google Drive view link in new tab
+    window.open(
+      "https://drive.google.com/file/d/10s99uxXCNJFRRCUNx10fYIqH0mPelB4I/view?usp=sharing",
+      "_blank"
+    );
+
+    // Trigger download in background
+    const downloadLink = document.createElement("a");
+    downloadLink.href = "https://drive.google.com/uc?export=download&id=10s99uxXCNJFRRCUNx10fYIqH0mPelB4I";
+    downloadLink.download = "RCThakur_Resume.pdf";
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  };
+
   return (
     <nav
       className={cn(
@@ -74,9 +94,8 @@ export const Navbar = () => {
 
           {/* Resume Button */}
           <a
-            href="https://drive.google.com/file/d/10s99uxXCNJFRRCUNx10fYIqH0mPelB4I/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
+            onClick={handleResumeClick}
             className="px-4 py-2 rounded-md text-sm font-semibold transition-all duration-300
               border border-gray-800 bg-gray-800 text-white hover:bg-white hover:text-gray-900 hover:border-white
               dark:border-primary dark:bg-primary dark:text-black dark:hover:bg-white dark:hover:text-primary dark:hover:border-white"
@@ -136,10 +155,11 @@ export const Navbar = () => {
 
             {/* Mobile Resume Button */}
             <a
-              href="https://drive.google.com/file/d/10s99uxXCNJFRRCUNx10fYIqH0mPelB4I/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsOpen(false)}
+              href="#"
+              onClick={(e) => {
+                handleResumeClick(e);
+                setIsOpen(false);
+              }}
               className="px-4 py-2 rounded-md text-sm font-semibold transition-all duration-300
                 border border-gray-800 bg-gray-800 text-white hover:bg-white hover:text-gray-900 hover:border-white
                 dark:border-primary dark:bg-primary dark:text-black dark:hover:bg-white dark:hover:text-primary dark:hover:border-white"
