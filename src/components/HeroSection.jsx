@@ -12,6 +12,27 @@ export const HeroSection = () => {
     delaySpeed: 2000,
   });
 
+  // Handle resume open + download
+  const handleResumeClick = (e) => {
+    e.preventDefault();
+
+    // Open the resume in new tab
+    window.open(
+      "https://drive.google.com/file/d/10s99uxXCNJFRRCUNx10fYIqH0mPelB4I/view?usp=sharing",
+      "_blank"
+    );
+
+    // Trigger download
+    const downloadLink = document.createElement("a");
+    downloadLink.href =
+      "https://drive.google.com/uc?export=download&id=10s99uxXCNJFRRCUNx10fYIqH0mPelB4I";
+    downloadLink.download = "RCThakur_Resume.pdf";
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  };
+
   return (
     <section
       id="hero"
@@ -78,9 +99,8 @@ export const HeroSection = () => {
         {/* Resume Button */}
         <div className="flex justify-center lg:justify-start">
           <a
-            href="https://drive.google.com/file/d/10s99uxXCNJFRRCUNx10fYIqH0mPelB4I/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
+            onClick={handleResumeClick}
             className="px-6 py-2 rounded-full font-semibold text-sm shadow-lg
               bg-gradient-to-r from-primary to-pink-500 text-white
               hover:scale-105 hover:shadow-pink-500/50
